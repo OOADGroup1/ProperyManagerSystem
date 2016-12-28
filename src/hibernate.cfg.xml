@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/prtydb</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <mapping resource="com/propertysys/bean/Catlog.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/Employee.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/EquipItem.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/EquipManageRecord.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/EquipRentRecord.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/Equipment.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/InstallRecord.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/ItemManager.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/Spare.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/SpareItem.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/SpareManageRecord.hbm.xml"/>
+        <mapping resource="com/propertysys/bean/SpareRentRecord.hbm.xml"/>
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+
+    </session-factory>
+</hibernate-configuration>

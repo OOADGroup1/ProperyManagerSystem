@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.propertysys.bean.EquipManageRecord" table="EquipManageRecord" schema="prtydb">
+        <composite-id mapped="true" class="com.propertysys.bean.EquipManageRecordPK">
+            <key-property name="equipSeriesId">
+                <column name="equip_series_id" sql-type="int(11)"/>
+            </key-property>
+            <key-property name="managerId">
+                <column name="manager_id" sql-type="int(11)"/>
+            </key-property>
+        </composite-id>
+        <property name="manageDate">
+            <column name="manage_date" sql-type="timestamp"/>
+        </property>
+        <property name="manageType">
+            <column name="manage_type" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
