@@ -1,0 +1,17 @@
+######################
+# 解决java产生文件
+######################
+*.class
+
+## Directory-based project format:
+.idea/
+
+######################
+# 解决各类编辑器自动产生的文件
+######################
+*.iml
+
+## Plugin-specific files:
+# IntelliJ
+/out/
+/target/
