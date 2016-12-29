@@ -15,3 +15,6 @@
 # IntelliJ
 /out/
 /target/
+
+## hibernate config file
+hibernate.cfg.xml
