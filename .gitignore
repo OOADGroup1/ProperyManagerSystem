@@ -14,7 +14,12 @@
 ## Plugin-specific files:
 # IntelliJ
 /out/
+<<<<<<< HEAD
+/lib/
+/target/
+=======
 /target/
 
 ## hibernate config file
 hibernate.cfg.xml
+>>>>>>> e7c76819c62c38986e7568e6b9fb3d172a77b890
