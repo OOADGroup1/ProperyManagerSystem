@@ -6,18 +6,21 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/prtydb</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <mapping resource="com/propertysys/bean/Catlog.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/Employee.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/EquipItem.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/EquipManageRecord.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/EquipRentRecord.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/Equipment.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/InstallRecord.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/ItemManager.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/Spare.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/SpareItem.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/SpareManageRecord.hbm.xml"/>
-        <mapping resource="com/propertysys/bean/SpareRentRecord.hbm.xml"/>
+        <property name="connection.username">root</property>
+        <property name="connection.password">m941216</property>
+
+        <!--<mapping class="com.propertysys.bean.CatlogBean"/>-->
+        <mapping class="com.propertysys.bean.EmployeeBean"/>
+        <mapping class="com.propertysys.bean.EquipItemBean"/>
+        <mapping class="com.propertysys.bean.EquipManageRecordBean"/>
+        <mapping class="com.propertysys.bean.EquipRentRecordBean"/>
+        <mapping class="com.propertysys.bean.EquipmentBean"/>
+        <mapping class="com.propertysys.bean.InstallRecordBean"/>
+        <mapping class="com.propertysys.bean.ItemManagerBean"/>
+        <mapping class="com.propertysys.bean.SpareBean"/>
+        <mapping class="com.propertysys.bean.SpareItemBean"/>
+        <mapping class="com.propertysys.bean.SpareManageRecordBean"/>
+        <mapping class="com.propertysys.bean.SpareRentRecordBean"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
