@@ -1,16 +1,22 @@
 package com.propertysys.bean;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class EquipManageRecord {
+@Entity
+@Table(name = "EquipManageRecord", schema = "prtydb", catalog = "")
+@IdClass(EquipManageRecordBeanPK.class)
+public class EquipManageRecordBean {
     private int equipSeriesId;
     private int managerId;
     private Timestamp manageDate;
     private String manageType;
 
+    @Id
+    @Column(name = "equip_series_id", nullable = false)
     public int getEquipSeriesId() {
         return equipSeriesId;
     }
@@ -19,6 +25,8 @@ public class EquipManageRecord {
         this.equipSeriesId = equipSeriesId;
     }
 
+    @Id
+    @Column(name = "manager_id", nullable = false)
     public int getManagerId() {
         return managerId;
     }
@@ -27,6 +35,8 @@ public class EquipManageRecord {
         this.managerId = managerId;
     }
 
+    @Basic
+    @Column(name = "manage_date", nullable = false)
     public Timestamp getManageDate() {
         return manageDate;
     }
@@ -35,6 +45,8 @@ public class EquipManageRecord {
         this.manageDate = manageDate;
     }
 
+    @Basic
+    @Column(name = "manage_type", nullable = true, length = 50)
     public String getManageType() {
         return manageType;
     }
@@ -48,7 +60,7 @@ public class EquipManageRecord {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EquipManageRecord that = (EquipManageRecord) o;
+        EquipManageRecordBean that = (EquipManageRecordBean) o;
 
         if (equipSeriesId != that.equipSeriesId) return false;
         if (managerId != that.managerId) return false;

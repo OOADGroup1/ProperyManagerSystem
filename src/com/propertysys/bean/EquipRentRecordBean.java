@@ -1,16 +1,22 @@
 package com.propertysys.bean;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class EquipRentRecord {
+@Entity
+@Table(name = "EquipRentRecord", schema = "prtydb", catalog = "")
+@IdClass(EquipRentRecordBeanPK.class)
+public class EquipRentRecordBean {
     private int employeeId;
     private int equipSeriesId;
     private Timestamp rentDate;
     private String rentAction;
 
+    @Id
+    @Column(name = "employee_id", nullable = false)
     public int getEmployeeId() {
         return employeeId;
     }
@@ -19,6 +25,8 @@ public class EquipRentRecord {
         this.employeeId = employeeId;
     }
 
+    @Id
+    @Column(name = "equip_series_id", nullable = false)
     public int getEquipSeriesId() {
         return equipSeriesId;
     }
@@ -27,6 +35,8 @@ public class EquipRentRecord {
         this.equipSeriesId = equipSeriesId;
     }
 
+    @Basic
+    @Column(name = "rent_date", nullable = false)
     public Timestamp getRentDate() {
         return rentDate;
     }
@@ -35,6 +45,8 @@ public class EquipRentRecord {
         this.rentDate = rentDate;
     }
 
+    @Basic
+    @Column(name = "rent_action", nullable = true, length = 50)
     public String getRentAction() {
         return rentAction;
     }
@@ -48,7 +60,7 @@ public class EquipRentRecord {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EquipRentRecord that = (EquipRentRecord) o;
+        EquipRentRecordBean that = (EquipRentRecordBean) o;
 
         if (employeeId != that.employeeId) return false;
         if (equipSeriesId != that.equipSeriesId) return false;

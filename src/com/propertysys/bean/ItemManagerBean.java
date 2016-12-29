@@ -1,11 +1,20 @@
 package com.propertysys.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class ItemManager {
+@Entity
+@Table(name = "ItemManager", schema = "prtydb", catalog = "")
+public class ItemManagerBean {
     private int managerId;
 
+    @Id
+    @Column(name = "manager_id", nullable = false)
     public int getManagerId() {
         return managerId;
     }
@@ -19,7 +28,7 @@ public class ItemManager {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ItemManager that = (ItemManager) o;
+        ItemManagerBean that = (ItemManagerBean) o;
 
         if (managerId != that.managerId) return false;
 

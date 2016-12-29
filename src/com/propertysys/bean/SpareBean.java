@@ -1,15 +1,22 @@
 package com.propertysys.bean;
 
+import javax.persistence.*;
+
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class Spare {
+@Entity
+@Table(name = "Spare", schema = "prtydb", catalog = "")
+@IdClass(SpareBeanPK.class)
+public class SpareBean {
     private int catlogId;
     private int spareId;
     private String catlogType;
     private String spareDesc;
     private Double sparePrice;
 
+    @Id
+    @Column(name = "catlog_id", nullable = false)
     public int getCatlogId() {
         return catlogId;
     }
@@ -18,6 +25,8 @@ public class Spare {
         this.catlogId = catlogId;
     }
 
+    @Id
+    @Column(name = "spare_id", nullable = false)
     public int getSpareId() {
         return spareId;
     }
@@ -26,6 +35,8 @@ public class Spare {
         this.spareId = spareId;
     }
 
+    @Basic
+    @Column(name = "catlog_type", nullable = true, length = 50)
     public String getCatlogType() {
         return catlogType;
     }
@@ -34,6 +45,8 @@ public class Spare {
         this.catlogType = catlogType;
     }
 
+    @Basic
+    @Column(name = "spare_desc", nullable = true, length = -1)
     public String getSpareDesc() {
         return spareDesc;
     }
@@ -42,6 +55,8 @@ public class Spare {
         this.spareDesc = spareDesc;
     }
 
+    @Basic
+    @Column(name = "spare_price", nullable = true, precision = 0)
     public Double getSparePrice() {
         return sparePrice;
     }
@@ -55,13 +70,13 @@ public class Spare {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Spare spare = (Spare) o;
+        SpareBean spareBean = (SpareBean) o;
 
-        if (catlogId != spare.catlogId) return false;
-        if (spareId != spare.spareId) return false;
-        if (catlogType != null ? !catlogType.equals(spare.catlogType) : spare.catlogType != null) return false;
-        if (spareDesc != null ? !spareDesc.equals(spare.spareDesc) : spare.spareDesc != null) return false;
-        if (sparePrice != null ? !sparePrice.equals(spare.sparePrice) : spare.sparePrice != null) return false;
+        if (catlogId != spareBean.catlogId) return false;
+        if (spareId != spareBean.spareId) return false;
+        if (catlogType != null ? !catlogType.equals(spareBean.catlogType) : spareBean.catlogType != null) return false;
+        if (spareDesc != null ? !spareDesc.equals(spareBean.spareDesc) : spareBean.spareDesc != null) return false;
+        if (sparePrice != null ? !sparePrice.equals(spareBean.sparePrice) : spareBean.sparePrice != null) return false;
 
         return true;
     }

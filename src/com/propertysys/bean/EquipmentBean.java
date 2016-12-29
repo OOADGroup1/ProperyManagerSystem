@@ -1,15 +1,22 @@
 package com.propertysys.bean;
 
+import javax.persistence.*;
+
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class Equipment {
+@Entity
+@Table(name = "Equipment", schema = "prtydb", catalog = "")
+@IdClass(EquipmentBeanPK.class)
+public class EquipmentBean {
     private int catlogId;
     private int equipId;
     private String catlogType;
     private String equipDesc;
     private Double equipPrice;
 
+    @Id
+    @Column(name = "catlog_id", nullable = false)
     public int getCatlogId() {
         return catlogId;
     }
@@ -18,6 +25,8 @@ public class Equipment {
         this.catlogId = catlogId;
     }
 
+    @Id
+    @Column(name = "equip_id", nullable = false)
     public int getEquipId() {
         return equipId;
     }
@@ -26,6 +35,8 @@ public class Equipment {
         this.equipId = equipId;
     }
 
+    @Basic
+    @Column(name = "catlog_type", nullable = true, length = 50)
     public String getCatlogType() {
         return catlogType;
     }
@@ -34,6 +45,8 @@ public class Equipment {
         this.catlogType = catlogType;
     }
 
+    @Basic
+    @Column(name = "equip_desc", nullable = true, length = -1)
     public String getEquipDesc() {
         return equipDesc;
     }
@@ -42,6 +55,8 @@ public class Equipment {
         this.equipDesc = equipDesc;
     }
 
+    @Basic
+    @Column(name = "equip_price", nullable = true, precision = 0)
     public Double getEquipPrice() {
         return equipPrice;
     }
@@ -55,13 +70,13 @@ public class Equipment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Equipment equipment = (Equipment) o;
+        EquipmentBean that = (EquipmentBean) o;
 
-        if (catlogId != equipment.catlogId) return false;
-        if (equipId != equipment.equipId) return false;
-        if (catlogType != null ? !catlogType.equals(equipment.catlogType) : equipment.catlogType != null) return false;
-        if (equipDesc != null ? !equipDesc.equals(equipment.equipDesc) : equipment.equipDesc != null) return false;
-        if (equipPrice != null ? !equipPrice.equals(equipment.equipPrice) : equipment.equipPrice != null) return false;
+        if (catlogId != that.catlogId) return false;
+        if (equipId != that.equipId) return false;
+        if (catlogType != null ? !catlogType.equals(that.catlogType) : that.catlogType != null) return false;
+        if (equipDesc != null ? !equipDesc.equals(that.equipDesc) : that.equipDesc != null) return false;
+        if (equipPrice != null ? !equipPrice.equals(that.equipPrice) : that.equipPrice != null) return false;
 
         return true;
     }

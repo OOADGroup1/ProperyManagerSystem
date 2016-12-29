@@ -1,12 +1,18 @@
 package com.propertysys.bean;
 
+import javax.persistence.*;
+
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class Employee {
+@Entity
+@Table(name = "Employee", schema = "prtydb", catalog = "")
+public class EmployeeBean {
     private int employeeId;
     private String employeeName;
 
+    @Id
+    @Column(name = "employee_id", nullable = false)
     public int getEmployeeId() {
         return employeeId;
     }
@@ -15,6 +21,8 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
+    @Basic
+    @Column(name = "employee_name", nullable = true, length = 50)
     public String getEmployeeName() {
         return employeeName;
     }
@@ -28,11 +36,10 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Employee employee = (Employee) o;
+        EmployeeBean that = (EmployeeBean) o;
 
-        if (employeeId != employee.employeeId) return false;
-        if (employeeName != null ? !employeeName.equals(employee.employeeName) : employee.employeeName != null)
-            return false;
+        if (employeeId != that.employeeId) return false;
+        if (employeeName != null ? !employeeName.equals(that.employeeName) : that.employeeName != null) return false;
 
         return true;
     }

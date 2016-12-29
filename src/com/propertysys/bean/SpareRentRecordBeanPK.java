@@ -1,22 +1,28 @@
 package com.propertysys.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class InstallRecordPK implements Serializable {
-    private int equipSeriesId;
+public class SpareRentRecordBeanPK implements Serializable {
+    private int employeeId;
     private int spareSeriesId;
 
-    public int getEquipSeriesId() {
-        return equipSeriesId;
+    @Column(name = "employee_id", nullable = false)
+    @Id
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEquipSeriesId(int equipSeriesId) {
-        this.equipSeriesId = equipSeriesId;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
+    @Column(name = "spare_series_id", nullable = false)
+    @Id
     public int getSpareSeriesId() {
         return spareSeriesId;
     }
@@ -30,9 +36,9 @@ public class InstallRecordPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        InstallRecordPK that = (InstallRecordPK) o;
+        SpareRentRecordBeanPK that = (SpareRentRecordBeanPK) o;
 
-        if (equipSeriesId != that.equipSeriesId) return false;
+        if (employeeId != that.employeeId) return false;
         if (spareSeriesId != that.spareSeriesId) return false;
 
         return true;
@@ -40,7 +46,7 @@ public class InstallRecordPK implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = equipSeriesId;
+        int result = employeeId;
         result = 31 * result + spareSeriesId;
         return result;
     }

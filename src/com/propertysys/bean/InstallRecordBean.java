@@ -1,15 +1,21 @@
 package com.propertysys.bean;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class InstallRecord {
+@Entity
+@Table(name = "InstallRecord", schema = "prtydb", catalog = "")
+@IdClass(InstallRecordBeanPK.class)
+public class InstallRecordBean {
     private int equipSeriesId;
     private int spareSeriesId;
     private Timestamp installDate;
 
+    @Id
+    @Column(name = "equip_series_id", nullable = false)
     public int getEquipSeriesId() {
         return equipSeriesId;
     }
@@ -18,6 +24,8 @@ public class InstallRecord {
         this.equipSeriesId = equipSeriesId;
     }
 
+    @Id
+    @Column(name = "spare_series_id", nullable = false)
     public int getSpareSeriesId() {
         return spareSeriesId;
     }
@@ -26,6 +34,8 @@ public class InstallRecord {
         this.spareSeriesId = spareSeriesId;
     }
 
+    @Basic
+    @Column(name = "install_date", nullable = false)
     public Timestamp getInstallDate() {
         return installDate;
     }
@@ -39,7 +49,7 @@ public class InstallRecord {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        InstallRecord that = (InstallRecord) o;
+        InstallRecordBean that = (InstallRecordBean) o;
 
         if (equipSeriesId != that.equipSeriesId) return false;
         if (spareSeriesId != that.spareSeriesId) return false;

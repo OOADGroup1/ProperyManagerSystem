@@ -1,14 +1,18 @@
 package com.propertysys.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class EquipManageRecordPK implements Serializable {
+public class EquipManageRecordBeanPK implements Serializable {
     private int equipSeriesId;
     private int managerId;
 
+    @Column(name = "equip_series_id", nullable = false)
+    @Id
     public int getEquipSeriesId() {
         return equipSeriesId;
     }
@@ -17,6 +21,8 @@ public class EquipManageRecordPK implements Serializable {
         this.equipSeriesId = equipSeriesId;
     }
 
+    @Column(name = "manager_id", nullable = false)
+    @Id
     public int getManagerId() {
         return managerId;
     }
@@ -30,7 +36,7 @@ public class EquipManageRecordPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EquipManageRecordPK that = (EquipManageRecordPK) o;
+        EquipManageRecordBeanPK that = (EquipManageRecordBeanPK) o;
 
         if (equipSeriesId != that.equipSeriesId) return false;
         if (managerId != that.managerId) return false;

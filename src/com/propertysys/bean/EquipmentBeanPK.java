@@ -1,14 +1,18 @@
 package com.propertysys.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by Sunny on 16/12/28.
+ * Created by shenying on 16/12/29.
  */
-public class EquipmentPK implements Serializable {
+public class EquipmentBeanPK implements Serializable {
     private int catlogId;
     private int equipId;
 
+    @Column(name = "catlog_id", nullable = false)
+    @Id
     public int getCatlogId() {
         return catlogId;
     }
@@ -17,6 +21,8 @@ public class EquipmentPK implements Serializable {
         this.catlogId = catlogId;
     }
 
+    @Column(name = "equip_id", nullable = false)
+    @Id
     public int getEquipId() {
         return equipId;
     }
@@ -30,7 +36,7 @@ public class EquipmentPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EquipmentPK that = (EquipmentPK) o;
+        EquipmentBeanPK that = (EquipmentBeanPK) o;
 
         if (catlogId != that.catlogId) return false;
         if (equipId != that.equipId) return false;
