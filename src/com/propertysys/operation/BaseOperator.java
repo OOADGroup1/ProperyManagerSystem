@@ -51,7 +51,7 @@ public abstract class BaseOperator<T> implements IBaseOperator<T> {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(int id) {
         try {
             startOperation();
             Object object = (Object) getSession().get(clazz, id);
@@ -80,7 +80,7 @@ public abstract class BaseOperator<T> implements IBaseOperator<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public T queryById(String id) {
+    public T queryById(int id) {
         T t = null;
         try {
             startOperation();
