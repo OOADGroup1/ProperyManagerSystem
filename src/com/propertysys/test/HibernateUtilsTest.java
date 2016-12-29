@@ -26,54 +26,11 @@ public class HibernateUtilsTest {
             ts.commit();
         } catch (HibernateException e) {
             e.printStackTrace();
+            ts.rollback();
         }finally{
             HibernateUtils.closeSession(session);
         }
 
     }
-
-//    @Test
-//    public void testHibernate() throws Exception{
-//        Configuration cfg = new Configuration().configure();
-//
-//        //建立SessionFactory.
-//        SessionFactory factroy = cfg.buildSessionFactory();
-//        //取得session.
-//        Session session = null;
-//
-//        try
-//        {
-//            //通过工厂取得session
-//            session = factroy.openSession();
-//
-//            //开启事务.
-//            session.beginTransaction();
-//            //给对象赋值.
-//            Employee employee = new Employee();
-//            employee.setEmployeeId(0);
-//            employee.setEmployeeName("alex");
-//            session.save(employee);
-//
-//            //先拿到前面事务的对象.再提交事务.
-//            session.getTransaction().commit();
-//        }catch( Exception e)
-//        {
-//            e.printStackTrace();
-//            //回滚事务.
-//            session.getTransaction().rollback();
-//        }finally{
-//
-//            if(session!=null)
-//            {
-//                if(session.isOpen())
-//                {
-//                    //关闭session.
-//                    //hibernate中已经将connection的的关闭封装了.
-//                    //我们没有看到任何一条sql语句.
-//                    session.close();
-//                }
-//            }
-//        }
-//    }
 
 }
