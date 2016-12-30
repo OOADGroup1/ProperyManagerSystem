@@ -26,8 +26,8 @@ public class EquipmentOperatorTest {
         equipmentBean.setCatlogId(1);
         equipmentBean.setCatlogType("equipment");
         equipmentBean.setEquipId(3);
-        equipmentBean.setEquipDesc("Dell mouse");
-        equipmentBean.setEquipPrice(300.0);
+        equipmentBean.setEquipDesc("Dell keyboard");
+        equipmentBean.setEquipPrice(800.0);
         equipmentOperator.insert(equipmentBean);
     }
 

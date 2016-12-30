@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by Sunny on 16/12/30.
+ * Created by Sunnygit on 16/12/30.
  */
 public class EquipItemOperatorTest {
     private final int IDLE = 1;
@@ -23,7 +23,7 @@ public class EquipItemOperatorTest {
     @Test
     public void insert() throws Exception {
         EquipItemBean equipItemBean = new EquipItemBean();
-        equipItemBean.setEquipSeriesId(3);
+        equipItemBean.setEquipSeriesId(1);
         equipItemBean.setEquipStatus(IDLE);
         equipItemBean.setEquipId(1);
         equipItemOperator.insert(equipItemBean);
