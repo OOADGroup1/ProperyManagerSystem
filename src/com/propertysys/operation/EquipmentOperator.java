@@ -1,5 +1,9 @@
 package com.propertysys.operation;
 
+<<<<<<< HEAD
+=======
+import com.propertysys.bean.EquipmentBean;
+>>>>>>> baed44696f70c25b16921667c62ca89684991449
 import com.propertysys.hibernate.HibernateUtils;
 import org.hibernate.HibernateException;
 
@@ -8,6 +12,7 @@ import org.hibernate.HibernateException;
  */
 public class EquipmentOperator extends BaseOperator<EquipmentBean> implements IEquipmentOperator {
 
+<<<<<<< HEAD
     public EquipmentBean queryByPK(EquipmentBeanPK pk){
         EquipmentBean equipmentBean = null;
         try {
@@ -35,4 +40,6 @@ public class EquipmentOperator extends BaseOperator<EquipmentBean> implements IE
             HibernateUtils.closeSession(session);
         }
     }
+=======
+>>>>>>> baed44696f70c25b16921667c62ca89684991449
 }

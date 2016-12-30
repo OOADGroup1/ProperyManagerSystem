@@ -1,5 +1,9 @@
 package com.propertysys.test;
 
+<<<<<<< HEAD
+=======
+import com.propertysys.bean.EquipmentBean;
+>>>>>>> baed44696f70c25b16921667c62ca89684991449
 import com.propertysys.operation.EquipmentOperator;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,23 +67,4 @@ public class EquipmentOperatorTest {
 
     }
 
-    public void queryByPK() throws Exception {
-        EquipmentBeanPK pk = new EquipmentBeanPK();
-        pk.setCatlogId(0);
-        pk.setEquipId(1);
-        EquipmentBean equipmentBean = equipmentOperator.queryByPK(pk);
-        System.out.println("equipId=" + equipmentBean.getEquipId() +
-                " catlogId=" + equipmentBean.getCatlogId() +
-                " CatlogType=" + equipmentBean.getCatlogType() +
-                " desc=" + equipmentBean.getEquipDesc() +
-                " price=" + equipmentBean.getEquipPrice());
-    }
-
-    @Test
-    public void deleteByPK() throws Exception {
-        EquipmentBeanPK pk = new EquipmentBeanPK();
-        pk.setCatlogId(0);
-        pk.setEquipId(1);
-        equipmentOperator.deleteByPK(pk);
-    }
 }

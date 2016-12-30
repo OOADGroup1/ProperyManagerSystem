@@ -6,10 +6,15 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/prtydb</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+<<<<<<< HEAD
         <property name="connection.username">root</property>
         <property name="connection.password">m941216</property>
 
+=======
+        <mapping class="com.propertysys.bean.CatlogBean"/>
+>>>>>>> baed44696f70c25b16921667c62ca89684991449
         <mapping class="com.propertysys.bean.EmployeeBean"/>
+        <mapping class="com.propertysys.bean.EquipItemBean"/>
         <mapping class="com.propertysys.bean.EquipManageRecordBean"/>
         <mapping class="com.propertysys.bean.EquipRentRecordBean"/>
         <mapping class="com.propertysys.bean.EquipmentBean"/>
@@ -19,8 +24,6 @@
         <mapping class="com.propertysys.bean.SpareItemBean"/>
         <mapping class="com.propertysys.bean.SpareManageRecordBean"/>
         <mapping class="com.propertysys.bean.SpareRentRecordBean"/>
-        <mapping class="com.propertysys.bean.EquipItemBean"/>
-        <mapping class="com.propertysys.bean.CatlogBean"/>
 
 
         <!-- DB schema will be updated if needed -->
