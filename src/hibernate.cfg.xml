@@ -6,8 +6,6 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/prtydb</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">m941216</property>
 
         <mapping class="com.propertysys.bean.EmployeeBean"/>
         <mapping class="com.propertysys.bean.EquipItemBean"/>
@@ -20,6 +18,7 @@
         <mapping class="com.propertysys.bean.SpareItemBean"/>
         <mapping class="com.propertysys.bean.SpareManageRecordBean"/>
         <mapping class="com.propertysys.bean.SpareRentRecordBean"/>
+        <mapping class="com.propertysys.bean.CatlogBean"/>
 
 
         <!-- DB schema will be updated if needed -->

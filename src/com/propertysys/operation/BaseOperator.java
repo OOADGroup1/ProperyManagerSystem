@@ -43,7 +43,7 @@ public abstract class BaseOperator<T> implements IBaseOperator<T> {
         try {
             startOperation();
             for(Iterator iter = list.iterator(); iter.hasNext();) {
-                session.save(iter.next());
+                session.save((T) iter.next());
             }
             tx.commit();
         } catch (HibernateException e){
