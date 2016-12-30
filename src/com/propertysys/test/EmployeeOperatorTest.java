@@ -1,13 +1,9 @@
 package com.propertysys.test;
 
 import com.propertysys.bean.EmployeeBean;
-import com.propertysys.hibernate.HibernateUtils;
 import com.propertysys.operation.EmployeeOperator;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
