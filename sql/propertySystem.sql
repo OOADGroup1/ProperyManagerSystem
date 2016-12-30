@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/12/30 19:51:09                          */
+/* Created on:     2016/12/30 22:55:50                          */
 /*==============================================================*/
 
 
@@ -33,7 +33,7 @@ drop table if exists SpareRentRecord;
 /*==============================================================*/
 create table Catlog
 (
-   catlog_id            int not null,
+   catlog_id            int not null auto_increment,
    catlog_type          varchar(50),
    primary key (catlog_id)
 );
@@ -43,7 +43,7 @@ create table Catlog
 /*==============================================================*/
 create table Employee
 (
-   employee_id          int not null,
+   employee_id          int not null auto_increment,
    employee_name        varchar(50),
    primary key (employee_id)
 );
@@ -53,7 +53,7 @@ create table Employee
 /*==============================================================*/
 create table EquipItem
 (
-   equip_series_id      int not null,
+   equip_series_id      int not null auto_increment,
    equip_id             int not null,
    equip_status         int,
    primary key (equip_series_id)
@@ -68,7 +68,7 @@ create table EquipManageRecord
    manager_id           int not null,
    manage_date          timestamp,
    manage_type          varchar(50),
-   equip_mng_rec_id     int not null,
+   equip_mng_rec_id     int not null auto_increment,
    primary key (equip_mng_rec_id)
 );
 
@@ -81,7 +81,7 @@ create table EquipRentRecord
    equip_series_id      int not null,
    rent_date            timestamp,
    rent_action          varchar(50),
-   equip_rent_rec_id    int not null,
+   equip_rent_rec_id    int not null auto_increment,
    primary key (equip_rent_rec_id)
 );
 
@@ -91,7 +91,7 @@ create table EquipRentRecord
 create table Equipment
 (
    catlog_id            int not null,
-   equip_id             int not null,
+   equip_id             int not null auto_increment,
    catlog_type          varchar(50),
    equip_desc           text,
    equip_price          float,
@@ -106,7 +106,7 @@ create table InstallRecord
    equip_series_id      int not null,
    spare_series_id      int not null,
    install_date         timestamp,
-   install_rec_id       int not null,
+   install_rec_id       int not null auto_increment,
    primary key (install_rec_id)
 );
 
@@ -115,7 +115,7 @@ create table InstallRecord
 /*==============================================================*/
 create table ItemManager
 (
-   manager_id           int not null,
+   manager_id           int not null auto_increment,
    primary key (manager_id)
 );
 
@@ -125,7 +125,7 @@ create table ItemManager
 create table Spare
 (
    catlog_id            int not null,
-   spare_id             int not null,
+   spare_id             int not null auto_increment,
    catlog_type          varchar(50),
    spare_desc           text,
    spare_price          float,
@@ -137,7 +137,7 @@ create table Spare
 /*==============================================================*/
 create table SpareItem
 (
-   spare_series_id      int not null,
+   spare_series_id      int not null auto_increment,
    spare_id             int not null,
    spare_status         int,
    primary key (spare_series_id)
@@ -152,7 +152,7 @@ create table SpareManageRecord
    spare_series_id      int not null,
    manage_date          timestamp,
    manage_type          varchar(50),
-   spare_mng_rec_id     int not null,
+   spare_mng_rec_id     int not null auto_increment,
    primary key (spare_mng_rec_id)
 );
 
@@ -165,7 +165,7 @@ create table SpareRentRecord
    spare_series_id      int not null,
    rent_time            timestamp,
    rent_action          varchar(50),
-   spare_rent_rec_id    int not null,
+   spare_rent_rec_id    int not null auto_increment,
    primary key (spare_rent_rec_id)
 );
 

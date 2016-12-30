@@ -8,6 +8,7 @@ import com.propertysys.operation.EquipRentRecordOperator;
 import com.propertysys.operation.SpareItemOperator;
 import com.propertysys.operation.SpareRentRecordOperator;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,8 +17,10 @@ import java.util.List;
  */
 public class Client {
 
-    private final int IDLE = 1;
-    private final int OCCUPY = 0;
+    private final int IDLE = 0;
+    private final int OCCUPY = 1;
+    private final String BORROW = "borrow";
+    private final String RETURN = "return";
     private EquipItemOperator equipItemOperator;
     private EquipRentRecordOperator equipRentRecordOperator;
     private SpareItemOperator spareItemOperator;
@@ -32,7 +35,7 @@ public class Client {
     /**
      * view all the equipments in the company
      */
-    private void viewAllEquips(){
+    public void viewAllEquips(){
         List equipInfo = equipItemOperator.getAllEquipInfo();
         for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
             Object[] equip = (Object[]) iter.next();
@@ -47,7 +50,7 @@ public class Client {
     /**
      * view all the spares in the company
      */
-    private void viewAllSpares(){
+    public void viewAllSpares(){
         List spareInfo = spareItemOperator.getAllSpareInfo();
         for(Iterator iter = spareInfo.iterator(); iter.hasNext();){
             Object[] spare = (Object[]) iter.next();
@@ -63,25 +66,35 @@ public class Client {
      * view all the equipments that a employee has by this employee's Id
      * @param employeeId
      */
-    private void viewAllRentEquipsByEmployeeId(int employeeId){
-//        String hql = "select e.equipSeriesId from EquipRentRecordBean e " +
-//                "wherer e.employeeId = ?";
-//        equipRentRecordOperator.queryAll();
+    public void viewAllRentEquipsByEmployeeId(int employeeId){// 0
+        String hql = "select r.equipSeriesId, r.rentAction " +
+                "from EquipRentRecordBean r, EquipItemBean e " +
+                "where e.equipStatus = ? and e.equipSeriesId = r.equipSeriesId " +
+                "and r.employeeId = ?";
+        List equips = equipRentRecordOperator.queryAll(hql, new Object[] {OCCUPY, employeeId});
+        System.out.println("Employee(EmployeeId: " + employeeId + ") has equipments:");
+        viewHasList(equips);
     }
 
     /**
      * view all the spares that a employee has by this employee's Id
      * @param employeeId
      */
-    private void viewAllRentSparesByEmployeeId(int employeeId){
-        // TODO
+    public void viewAllRentSparesByEmployeeId(int employeeId){
+        String hql = "select r.spareSeriesId, r.rentAction " +
+                "from SpareRentRecordBean r, SpareItemBean s " +
+                "where s.spareStatus = ? and s.spareSeriesId = r.spareSeriesId " +
+                "and r.employeeId = ?";
+        List spares = spareRentRecordOperator.queryAll(hql, new Object[] {OCCUPY, employeeId});
+        System.out.println("Employee(EmployeeId: " + employeeId + ") has spares:");
+        viewHasList(spares);
     }
 
     /**
      * view the equipment's life cycle(buy, borrow, return, discard) by EquipId
      * @param equipId
      */
-    private void viewEquipLifeCycleById(int equipId){
+    public void viewEquipLifeCycleById(int equipId){
         // TODO
     }
 
@@ -89,7 +102,7 @@ public class Client {
      * view the equipment's life cycle(buy, borrow, return, discard) by EquipId
      * @param spareId
      */
-    private void viewSpareLifeCycleById(int spareId){
+    public void viewSpareLifeCycleById(int spareId){
         // TODO
     }
 
@@ -97,17 +110,62 @@ public class Client {
      * view the equipments's installation record of the spares By EquipId
      * @param equipId
      */
-    private void viewEquipInstallRecoById(int equipId){
+    public void viewEquipInstallRecoById(int equipId){
         // TODO
     }
 
-    private String getStatus(int stauts){
-        if (stauts == IDLE){
+    /**
+     * get the status name
+     * @param status status symbol
+     * @return status name
+     */
+    private String getStatus(int status){
+        if (status == IDLE){
             return "idle";
-        } else if (stauts == OCCUPY){
+        } else if (status == OCCUPY){
             return "Occupied";
         }
         return null;
+    }
+
+    /**
+     * From items list, pick the items that only have "Borrow" status
+     * @param items item list
+     */
+    private void viewHasList(List items){
+        List<Integer> returnedList = new ArrayList<>();
+        for(Iterator iter = items.iterator(); iter.hasNext();){
+            Object[] info = (Object[]) iter.next();
+            if (((String)info[1]).equals(RETURN)){
+                returnedList.add((int)info[0]);
+                iter.remove();
+            }
+        }
+        for(Iterator iter = items.iterator(); iter.hasNext();){ // remove all the item that has return state
+            Object[] info = (Object[]) iter.next();
+            if (hasContains(returnedList, (int)info[0])){
+                iter.remove();
+            }
+        }
+        for(Iterator iter = items.iterator(); iter.hasNext();){ // print the hasList
+            Object[] info = (Object[]) iter.next();
+            System.out.println("seriesId: " + (int)info[0]);
+        }
+    }
+
+    /**
+     * check whether key is in the list
+     * @param list
+     * @param key
+     * @return
+     */
+    private boolean hasContains(List<Integer> list, int key){
+        for (Integer i :
+                list) {
+            if (i == key)
+                return true;
+        }
+        return false;
     }
 
 }

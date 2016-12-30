@@ -12,8 +12,8 @@ import java.util.List;
  * Created by Sunny on 16/12/30.
  */
 public class EquipItemOperatorTest {
-    private final int IDLE = 1;
-    private final int OCCUPY = 0;
+    private final int IDLE = 0;
+    private final int OCCUPY = 1;
     private EquipItemOperator equipItemOperator;
     @Before
     public void setUp() throws Exception {
