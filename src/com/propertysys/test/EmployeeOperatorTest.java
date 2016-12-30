@@ -3,6 +3,7 @@ package com.propertysys.test;
 import com.propertysys.bean.EmployeeBean;
 import com.propertysys.hibernate.HibernateUtils;
 import com.propertysys.operation.EmployeeOperator;
+import com.propertysys.user.Employee;
 import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -11,6 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,6 +38,19 @@ public class EmployeeOperatorTest {
         employeeBean.setEmployeeName("anna");
         employeeOperator.insert(employeeBean);
     }
+
+    @Test
+    public void insertAll() throws Exception {
+        List<EmployeeBean> employeeList = new ArrayList<EmployeeBean>();
+        for(int index = 3; index < 3; index++) {
+            EmployeeBean employeeBean = new EmployeeBean();
+            employeeBean.setEmployeeId(index);
+            employeeBean.setEmployeeName("same name");
+            employeeList.add(employeeBean);
+        }
+        employeeOperator.insertAll(employeeList);
+    }
+
 
     @Test
     public void delete() throws Exception {
