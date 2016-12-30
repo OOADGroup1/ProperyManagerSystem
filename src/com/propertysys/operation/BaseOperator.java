@@ -3,6 +3,7 @@ package com.propertysys.operation;
 import com.propertysys.hibernate.HibernateUtils;
 import org.hibernate.*;
 
+import java.util.Iterator;
 import java.util.List;
 import java.lang.reflect.ParameterizedType;
 
@@ -21,8 +22,8 @@ public abstract class BaseOperator<T> implements IBaseOperator<T> {
         this.clazz = (Class) type.getActualTypeArguments()[0];
     }
 
-    private Session session;
-    private Transaction tx;
+    protected Session session;
+    protected Transaction tx;
 
     @Override
     public void insert(T t) {
@@ -36,6 +37,22 @@ public abstract class BaseOperator<T> implements IBaseOperator<T> {
             HibernateUtils.closeSession(session);
         }
     }
+
+    @Override
+    public void insertAll(List<T> list){
+        try {
+            startOperation();
+            for(Iterator iter = list.iterator(); iter.hasNext();) {
+                session.save((T) iter.next());
+            }
+            tx.commit();
+        } catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            HibernateUtils.closeSession(session);
+        }
+    }
+
 
     @Override
     public void delete(T t) {
@@ -92,6 +109,37 @@ public abstract class BaseOperator<T> implements IBaseOperator<T> {
             HibernateUtils.closeSession(session);
         }
         return t;
+    }
+
+    @Override
+    public List<T> queryAll(String hql, Object[] args){
+        List<T> listT = null;
+        try {
+            startOperation();
+            Query query = session.createQuery(hql);
+            if (args != null) {
+                for (int i = 0; i < args.length; i++) {
+                    query.setParameter(i, args[i]);
+                }
+            }
+            listT = query.list();
+            tx.commit();
+        } catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            HibernateUtils.closeSession(session);
+        }
+        return listT;
+    }
+
+    @Override
+    public List<T> queryAll(String hql, Object arg){
+        return this.queryAll(hql, new Object[] { arg });
+    }
+
+    @Override
+    public List<T> queryAll(String hql){
+        return this.queryAll(hql, null);
     }
 
     @Override

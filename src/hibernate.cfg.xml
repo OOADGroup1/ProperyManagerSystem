@@ -20,6 +20,7 @@
         <mapping class="com.propertysys.bean.SpareManageRecordBean"/>
         <mapping class="com.propertysys.bean.SpareRentRecordBean"/>
         <mapping class="com.propertysys.bean.EquipItemBean"/>
+        <mapping class="com.propertysys.bean.CatlogBean"/>
 
 
         <!-- DB schema will be updated if needed -->

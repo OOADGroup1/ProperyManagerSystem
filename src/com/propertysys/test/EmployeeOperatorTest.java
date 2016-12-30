@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,6 +33,19 @@ public class EmployeeOperatorTest {
         employeeBean.setEmployeeName("anna");
         employeeOperator.insert(employeeBean);
     }
+
+    @Test
+    public void insertAll() throws Exception {
+        List<EmployeeBean> employeeList = new ArrayList<EmployeeBean>();
+        for(int index = 3; index < 13; index++) {
+            EmployeeBean employeeBean = new EmployeeBean();
+            employeeBean.setEmployeeId(index);
+            employeeBean.setEmployeeName("same name");
+            employeeList.add(employeeBean);
+        }
+        employeeOperator.insertAll(employeeList);
+    }
+
 
     @Test
     public void delete() throws Exception {
@@ -63,6 +77,17 @@ public class EmployeeOperatorTest {
     @Test
     public void queryAll() throws Exception {
         List<EmployeeBean> list = employeeOperator.queryAll();
+        for(Iterator iter = list.iterator(); iter.hasNext();) {
+            EmployeeBean employeeBean = (EmployeeBean) iter.next();
+            System.out.println("id=" + employeeBean.getEmployeeId() +
+                    " name=" + employeeBean.getEmployeeName());
+        }
+    }
+
+    @Test
+    public void queryAll1(){
+        String hql = "from EmployeeBean e where e.employeeName = ?";
+        List<EmployeeBean> list = employeeOperator.queryAll(hql, new Object[]{"alex"});
         for(Iterator iter = list.iterator(); iter.hasNext();) {
             EmployeeBean employeeBean = (EmployeeBean) iter.next();
             System.out.println("id=" + employeeBean.getEmployeeId() +

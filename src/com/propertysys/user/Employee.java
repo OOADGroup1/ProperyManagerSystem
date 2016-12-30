@@ -5,6 +5,10 @@ package com.propertysys.user;
  */
 public class Employee {
 
+    public Employee(){
+
+    }
+
     /**
      * borrow equipment
      * @param equipId Id of the equipment that needs to be borrowed

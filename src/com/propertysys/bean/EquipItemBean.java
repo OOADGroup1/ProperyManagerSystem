@@ -8,6 +8,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "EquipItem", schema = "prtydb", catalog = "")
 public class EquipItemBean {
+    private final int IDLE = 0;
+    private final int OCCUPY = 1;
     private int equipSeriesId;
     private int catlogId;
     private int equipId;
