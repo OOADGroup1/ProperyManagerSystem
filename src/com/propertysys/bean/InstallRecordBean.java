@@ -45,6 +45,7 @@ public class InstallRecordBean {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "install_rec_id", nullable = false)
     public int getInstallRecId() {
         return installRecId;

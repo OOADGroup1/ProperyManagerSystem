@@ -56,6 +56,7 @@ public class SpareManageRecordBean {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "spare_mng_rec_id", nullable = false)
     public int getSpareMngRecId() {
         return spareMngRecId;

@@ -11,8 +11,8 @@ import java.sql.Timestamp;
  */
 public class Employee {
 
-    private final int IDLE = 0;
-    private final int OCCUPY = 1;
+    private final int IDLE = 1;
+    private final int OCCUPY = 0;
     private final String BORROW = "borrow";
     private final String RETURN = "return";
     private EmployeeBean employeeBean;
@@ -28,6 +28,7 @@ public class Employee {
         equipRentRecordOperator = new EquipRentRecordOperator();
         spareItemOperator = new SpareItemOperator();
         spareRentRecordOperator = new SpareRentRecordOperator();
+        installRecordOperator = new InstallRecordOperator();
     }
 
     /**
@@ -48,7 +49,7 @@ public class Employee {
      * @param equipId Id of the equipment that needs to be rent
      * @param method rent methos: borrow or return
      */
-    private void rentEquip(int equipId, String method){
+    public void rentEquip(int equipId, String method){
         int status;
         if ((status = getNextItemStatus(method)) == -1)
             return;
@@ -70,7 +71,7 @@ public class Employee {
      * @param equipIds  Id of the equipment that needs to be rent
      * @param method rent method: borrow or return
      */
-    private void rentEquips(int[] equipIds, String method){
+    public void rentEquips(int[] equipIds, String method){
         for (int equipId:
                 equipIds) {
             rentEquip(equipId, method);
@@ -82,7 +83,7 @@ public class Employee {
      * @param spareId Id of the spare that needs to be borrowed
      * @param method rent method: borrow or return
      */
-    private void rentSpare(int spareId, String method){
+    public void rentSpare(int spareId, String method){
         int status;
         if ((status = getNextItemStatus(method)) == -1)
             return;
@@ -104,7 +105,7 @@ public class Employee {
      * @param spareIds
      * @param method rent method: borrow or return
      */
-    private void rentSpares(int[] spareIds, String method){
+    public void rentSpares(int[] spareIds, String method){
         for (int spareId :
                 spareIds) {
             rentSpare(spareId,method);
@@ -112,9 +113,9 @@ public class Employee {
     }
 
     private int getNextItemStatus(String method){
-        if (method == BORROW){
+        if (method.equals(BORROW)){
             return OCCUPY;
-        } else if (method == RETURN){
+        } else if (method.equals(RETURN)){
             return IDLE;
         }
         return -1;
