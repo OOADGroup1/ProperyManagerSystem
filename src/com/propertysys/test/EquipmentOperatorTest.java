@@ -39,6 +39,9 @@ public class EquipmentOperatorTest {
 
     @Test
     public void deleteByPK() throws Exception {
-
+        EquipmentBeanPK pk = new EquipmentBeanPK();
+        pk.setCatlogId(0);
+        pk.setEquipId(1);
+        equipmentOperator.deleteByPK(pk);
     }
 }

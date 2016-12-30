@@ -5,6 +5,8 @@ import com.propertysys.bean.EquipmentBeanPK;
 import com.propertysys.hibernate.HibernateUtils;
 import org.hibernate.HibernateException;
 
+import static com.propertysys.hibernate.HibernateUtils.getSession;
+
 /**
  * Created by Sunny on 16/12/28.
  */
@@ -29,6 +31,16 @@ public class EquipmentOperator extends BaseOperator<EquipmentBean> implements IE
     }
 
     public void deleteByPK(EquipmentBeanPK pk){
-
+        EquipmentBean equipmentBean = null;
+        try {
+            startOperation();
+            equipmentBean = (EquipmentBean) session.get(EquipmentBean.class, pk);
+            session.delete(equipmentBean);
+            tx.commit();
+        } catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            HibernateUtils.closeSession(session);
+        }
     }
 }
