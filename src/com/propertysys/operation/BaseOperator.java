@@ -3,6 +3,7 @@ package com.propertysys.operation;
 import com.propertysys.hibernate.HibernateUtils;
 import org.hibernate.*;
 
+import java.util.Iterator;
 import java.util.List;
 import java.lang.reflect.ParameterizedType;
 
@@ -36,6 +37,22 @@ public abstract class BaseOperator<T> implements IBaseOperator<T> {
             HibernateUtils.closeSession(session);
         }
     }
+
+    @Override
+    public void insertAll(List<T> list){
+        try {
+            startOperation();
+            for(Iterator iter = list.iterator(); iter.hasNext();) {
+                session.save(iter.next());
+            }
+            tx.commit();
+        } catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            HibernateUtils.closeSession(session);
+        }
+    }
+
 
     @Override
     public void delete(T t) {

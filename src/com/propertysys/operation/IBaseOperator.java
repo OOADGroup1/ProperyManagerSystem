@@ -9,6 +9,7 @@ public interface IBaseOperator<T> {
     T queryById(int id);
     List<T> queryAll();
     void insert(T t);
+    void insertAll(List<T> list);
     void delete(T t);
     void delete(int id);
     void update(T t);
