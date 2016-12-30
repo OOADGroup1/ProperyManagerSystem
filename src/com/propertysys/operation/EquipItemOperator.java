@@ -11,8 +11,8 @@ import java.util.List;
 public class EquipItemOperator extends BaseOperator<EquipItemBean> implements IEuipItemOperator{
 
     public List getAllEquipInfo(){
-        String hql = "select e.equipSeriesId, e.equipStatus, " +
-                "em.equipDesc, em.equipPrice from EquipItemBean e, EquipmentBean em " +
+        String hql = "select NEW EquipItemBean(e.equipSeriesId, e.equipStatus, em.catlogType, " +
+                "em.equipDesc, em.equipPrice) from EquipItemBean e, EquipmentBean em " +
                 "where e.equipId = em.equipId";
         return queryAll(hql);
     }

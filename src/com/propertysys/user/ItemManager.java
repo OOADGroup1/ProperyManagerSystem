@@ -111,11 +111,8 @@ public class ItemManager {
      * @param equipId
      */
     public void discardEquipById(int equipId){
-        // update equip from equipItem table
-        EquipItemBean e = equipItemOperator.queryById(equipId);
-        e.setEquipStatus(GARBAGE);
-        equipItemOperator.update(e);
-
+        // delete equip from equipItem table
+        equipItemOperator.delete(equipId);
         // add discard record
         EquipManageRecordBean equipManageRecordBean = new EquipManageRecordBean();
         equipManageRecordBean.setEquipSeriesId(equipId);
@@ -130,8 +127,7 @@ public class ItemManager {
      * @param equipItem
      */
     public void discardEquip(EquipItemBean equipItem){
-        // update equip from equipItem table
-
+        // delete equip from equipItem table
         equipItemOperator.delete(equipItem);
         // add discard record
         EquipManageRecordBean equipManageRecordBean = new EquipManageRecordBean();

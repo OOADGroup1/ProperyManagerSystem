@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class Client {
 
+    private final int IDLE = 1;
+    private final int OCCUPY = 0;
     private EquipItemOperator equipItemOperator;
     private SpareItemOperator spareItemOperator;
 
@@ -23,12 +25,14 @@ public class Client {
      * view all the equipments in the company
      */
     private void viewAllEquips(){
-        String hql = "";
-        List<EquipItemBean> list = equipItemOperator.queryAll();
-        for(Iterator iter = list.iterator(); iter.hasNext();) {
-            EquipItemBean equipItemBean = (EquipItemBean) iter.next();
-            System.out.println("id: " + equipItemBean.getEquipSeriesId() +
-                    " status: " + equipItemBean.getEquipStatus());
+        List equipInfo = equipItemOperator.getAllEquipInfo();
+        for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
+            EquipItemBean equip = (EquipItemBean) iter.next();
+            System.out.println("equipSeriesId = " + equip.getEquipSeriesId() +
+                    " EquipStatus = " + getEquipStatus(equip.getEquipStatus()) +
+                    " CatlogType = " + equip.getCatlogType() +
+                    " desc = " + equip.getEquipDesc() +
+                    " price = " + equip.getEquipPrice());
         }
 
     }
@@ -80,5 +84,13 @@ public class Client {
         // TODO
     }
 
+    private String getEquipStatus(int stauts){
+        if (stauts == IDLE){
+            return "idle";
+        } else if (stauts == OCCUPY){
+            return "Occupied";
+        }
+        return null;
+    }
 
 }
