@@ -111,8 +111,10 @@ public class ItemManager {
      * @param equipId
      */
     public void discardEquipById(int equipId){
-        // delete equip from equipItem table
-        equipItemOperator.delete(equipId);
+        // update equip from equipItem table
+        EquipItemBean e = equipItemOperator.queryById(equipId);
+        e.setEquipStatus(GARBAGE);
+        equipItemOperator.update(e);
         // add discard record
         EquipManageRecordBean equipManageRecordBean = new EquipManageRecordBean();
         equipManageRecordBean.setEquipSeriesId(equipId);
@@ -127,8 +129,9 @@ public class ItemManager {
      * @param equipItem
      */
     public void discardEquip(EquipItemBean equipItem){
-        // delete equip from equipItem table
-        equipItemOperator.delete(equipItem);
+        // update equip from equipItem table
+        equipItem.setEquipStatus(GARBAGE);
+        equipItemOperator.update(equipItem);
         // add discard record
         EquipManageRecordBean equipManageRecordBean = new EquipManageRecordBean();
         equipManageRecordBean.setEquipSeriesId(equipItem.getEquipSeriesId());
@@ -143,8 +146,10 @@ public class ItemManager {
      * @param spareId
      */
     public void discardSpareById(int spareId){
-        // delete spare from spareItem table
-        spareItemOperator.delete(spareId);
+        // update spare from spareItem table
+        SpareItemBean s = spareItemOperator.queryById(spareId);
+        s.setSpareStatus(GARBAGE);
+        spareItemOperator.update(s);
         // add discard record
         SpareManageRecordBean spareManageRecordBean = new SpareManageRecordBean();
         spareManageRecordBean.setSpareSeriesId(spareId);
@@ -159,8 +164,9 @@ public class ItemManager {
      * @param spareItem
      */
     public void dicardSpare(SpareItemBean spareItem){
-        // delete spare from spareItem table
-        spareItemOperator.delete(spareItem);
+        // update spare from spareItem table
+        spareItem.setSpareStatus(GARBAGE);
+        spareItemOperator.update(spareItem);
         // add discard record
         SpareManageRecordBean spareManageRecordBean = new SpareManageRecordBean();
         spareManageRecordBean.setSpareSeriesId(spareItem.getSpareSeriesId());

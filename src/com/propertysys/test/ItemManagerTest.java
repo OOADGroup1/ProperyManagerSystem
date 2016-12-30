@@ -4,13 +4,13 @@ import com.propertysys.bean.EquipItemBean;
 import com.propertysys.bean.ItemManagerBean;
 import com.propertysys.bean.SpareItemBean;
 import com.propertysys.operation.EquipItemOperator;
-import com.propertysys.operation.EquipManageRecordOperator;
 import com.propertysys.operation.SpareItemOperator;
-import com.propertysys.operation.SpareManageRecordOperator;
 import com.propertysys.user.ItemManager;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,42 +18,38 @@ import java.util.List;
 /**
  * Created by Sunny on 16/12/30.
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ItemManagerTest {
     private final int IDLE = 1;
-    private final int OCCUPY = 0;
     private final int GARBAGE = 2;
     private ItemManager itemManager;
     private EquipItemOperator equipItemOperator;
-    private EquipManageRecordOperator equipManageRecordOperator;
     private SpareItemOperator spareItemOperator;
-    private SpareManageRecordOperator spareManageRecordOperator;
     @Before
     public void setUp() throws Exception {
         ItemManagerBean itemManagerBean= new ItemManagerBean();
         itemManagerBean.setManagerId(1);
         itemManager = new ItemManager(itemManagerBean);
         equipItemOperator = new EquipItemOperator();
-        equipManageRecordOperator = new EquipManageRecordOperator();
         spareItemOperator = new SpareItemOperator();
-        spareManageRecordOperator = new SpareManageRecordOperator();
     }
 
     @Test
-    public void testBuyEquipItem(){
+    public void test001BuyEquipItem(){
         EquipItemBean equipItem = new EquipItemBean();
         equipItem.setEquipId(1);
         equipItem.setEquipSeriesId(1);
         equipItem.setEquipStatus(IDLE);
         itemManager.buyEquipItem(equipItem);
 
-        EquipItemBean e = equipItemOperator.queryById(3);
+        EquipItemBean e = equipItemOperator.queryById(1);
         Assert.assertEquals(equipItem, e);
     }
 
     @Test
-    public void testBuyEquipItems(){
+    public void test002BuyEquipItems(){
         List<EquipItemBean> list = new ArrayList<>();
-        for(int i = 4; i <= 10; i++){
+        for(int i = 2; i <= 10; i++){
             EquipItemBean e = new EquipItemBean();
             e.setEquipId(1);
             e.setEquipSeriesId(i);
@@ -69,7 +65,7 @@ public class ItemManagerTest {
         }
 
         itemManager.buyEquipItems(list);
-        String hql = "from EquipItemBean e where e.equipSeriesId > 3";
+        String hql = "from EquipItemBean e where e.equipSeriesId > 1";
         List<EquipItemBean> testList = equipItemOperator.queryAll(hql);
         EquipItemBean[] el = new EquipItemBean[list.size()];
         list.toArray(el);
@@ -81,7 +77,7 @@ public class ItemManagerTest {
     }
 
     @Test
-    public void testBuySpareItem(){
+    public void test003BuySpareItem(){
         SpareItemBean spareItemBean = new SpareItemBean();
         spareItemBean.setSpareId(1);
         spareItemBean.setSpareSeriesId(1);
@@ -95,7 +91,7 @@ public class ItemManagerTest {
     }
 
     @Test
-    public void testBuySpareItems(){
+    public void test004BuySpareItems(){
         List<SpareItemBean> list = new ArrayList<>();
         for(int i = 2; i <= 10; i++){
             SpareItemBean s = new SpareItemBean();
@@ -126,8 +122,39 @@ public class ItemManagerTest {
     }
 
     @Test
-    public void testDiscardEquipById(){
+    public void test005DiscardEquipById(){
+        itemManager.discardEquipById(1);
+        EquipItemBean e = equipItemOperator.queryById(1);
+        Assert.assertEquals(e.getEquipStatus(), new Integer(GARBAGE));
+    }
 
+    @Test
+    public void test006DiscardEquip(){
+        EquipItemBean equipItemBean = new EquipItemBean();
+        equipItemBean.setEquipId(1);
+        equipItemBean.setEquipSeriesId(2);
+        itemManager.discardEquip(equipItemBean);
+
+        EquipItemBean e = equipItemOperator.queryById(2);
+        Assert.assertEquals(e.getEquipStatus(), new Integer(GARBAGE));
+    }
+
+    @Test
+    public void test007DiscardSpareById(){
+        itemManager.discardSpareById(1);
+        SpareItemBean s = spareItemOperator.queryById(1);
+        Assert.assertEquals(s.getSpareStatus(), new Integer(GARBAGE));
+    }
+
+    @Test
+    public void test008DiscardSpare(){
+        SpareItemBean spareItemBean = new SpareItemBean();
+        spareItemBean.setSpareId(1);
+        spareItemBean.setSpareSeriesId(2);
+        itemManager.dicardSpare(spareItemBean);
+
+        SpareItemBean s = spareItemOperator.queryById(2);
+        Assert.assertEquals(s.getSpareStatus(), new Integer(GARBAGE));
     }
 
 }

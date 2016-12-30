@@ -56,6 +56,7 @@ public class EquipManageRecordBean {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "equip_mng_rec_id", nullable = false)
     public int getEquipMngRecId() {
         return equipMngRecId;
