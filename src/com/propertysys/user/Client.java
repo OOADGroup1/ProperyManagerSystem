@@ -1,12 +1,7 @@
 package com.propertysys.user;
 
-import com.propertysys.bean.EquipItemBean;
-import com.propertysys.bean.SpareItemBean;
-import com.propertysys.bean.SpareRentRecordBean;
-import com.propertysys.operation.EquipItemOperator;
-import com.propertysys.operation.EquipRentRecordOperator;
-import com.propertysys.operation.SpareItemOperator;
-import com.propertysys.operation.SpareRentRecordOperator;
+import com.propertysys.bean.*;
+import com.propertysys.operation.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,14 +18,18 @@ public class Client {
     private final String RETURN = "return";
     private EquipItemOperator equipItemOperator;
     private EquipRentRecordOperator equipRentRecordOperator;
+    private EquipManageRecordOperator equipManageRecordOperator;
     private SpareItemOperator spareItemOperator;
     private SpareRentRecordOperator spareRentRecordOperator;
+    private SpareManageRecordOperator spareManageRecordOperator;
 
     public Client(){
         equipItemOperator = new EquipItemOperator();
         equipRentRecordOperator = new EquipRentRecordOperator();
+        equipManageRecordOperator = new EquipManageRecordOperator();
         spareItemOperator = new SpareItemOperator();
         spareRentRecordOperator = new SpareRentRecordOperator();
+        spareManageRecordOperator = new SpareManageRecordOperator();
     }
     /**
      * view all the equipments in the company
@@ -95,7 +94,14 @@ public class Client {
      * @param equipId
      */
     public void viewEquipLifeCycleById(int equipId){
-        // TODO
+        String manageHql = "from EquipManageRecordBean m where m.equipSeriesId = ? " +
+                "order by m.manageDate ASC";
+        List<EquipManageRecordBean> manageIist = equipManageRecordOperator.queryAll(manageHql, equipId);
+        String rentHql = "from EquipRentRecordBean r where r.equipSeriesId = ? " +
+                "order by r.rentDate ASC";
+        List<EquipRentRecordBean> rentList = equipRentRecordOperator.queryAll(rentHql, equipId);
+        System.out.println("The life cycle of equipment(equipSeriesId: "+ equipId +") is:");
+        viewEquipLifeCycle(manageIist, rentList);
     }
 
     /**
@@ -103,7 +109,14 @@ public class Client {
      * @param spareId
      */
     public void viewSpareLifeCycleById(int spareId){
-        // TODO
+        String manageHql = "from SpareManageRecordBean m where m.spareSeriesId = ? " +
+                "order by m.manageDate ASC";
+        List<SpareManageRecordBean> manageIist = spareManageRecordOperator.queryAll(manageHql, spareId);
+        String rentHql = "from SpareRentRecordBean r where r.spareSeriesId = ? " +
+                "order by r.rentDate ASC";
+        List<SpareRentRecordBean> rentList = spareRentRecordOperator.queryAll(rentHql, spareId);
+        System.out.println("The life cycle of spare(spareSeriesId: "+ spareId +") is:");
+        viewSpareLifeCycle(manageIist, rentList);
     }
 
     /**
@@ -166,6 +179,42 @@ public class Client {
                 return true;
         }
         return false;
+    }
+
+    /**
+     * view the equipment's life cycle
+     * @param manageList management record list
+     * @param rentList rent record list
+     */
+    private void viewEquipLifeCycle(List<EquipManageRecordBean> manageList,
+                                    List<EquipRentRecordBean> rentList){
+        for (EquipManageRecordBean manageRec :
+                manageList) {
+            System.out.println(manageRec.getManageDate() + "    " + manageRec.getManageType());
+        }
+        for (EquipRentRecordBean rentRec:
+             rentList) {
+            System.out.println(rentRec.getRentDate() + "    " +
+                    rentRec.getRentAction() + " by EmployeeID(" + rentRec.getEmployeeId() + ")");
+        }
+    }
+
+    /**
+     * view the spare's life cycle
+     * @param manageList management record list
+     * @param rentList rent record list
+     */
+    private void viewSpareLifeCycle(List<SpareManageRecordBean> manageList,
+                                    List<SpareRentRecordBean> rentList){
+        for (SpareManageRecordBean manageRec :
+                manageList) {
+            System.out.println(manageRec.getManageDate() + "    " + manageRec.getManageType());
+        }
+        for (SpareRentRecordBean rentRec:
+                rentList) {
+            System.out.println(rentRec.getRentTime() + "    " +
+                    rentRec.getRentAction() + " by EmployeeID(" + rentRec.getEmployeeId() + ")");
+        }
     }
 
 }

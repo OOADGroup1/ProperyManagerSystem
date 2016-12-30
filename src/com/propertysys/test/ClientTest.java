@@ -40,7 +40,7 @@ public class ClientTest {
 
     @Test
     public void viewEquipLifeCycleById() throws Exception {
-
+        client.viewEquipLifeCycleById(20160102);
     }
 
     @Test
