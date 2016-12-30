@@ -10,4 +10,5 @@ import java.util.List;
 public interface IEuipItemOperator extends IBaseOperator<EquipItemBean> {
 
     List getAllEquipInfo();
+    List getAllEquipInfo(String keyword);
 }

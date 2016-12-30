@@ -15,4 +15,10 @@ public class SpareItemOperator extends BaseOperator<SpareItemBean> implements IS
                 "where si.spareId = s.spareId";
         return queryAll(hql);
     }
+    public List getAllSpareInfo(String keyword){
+        String hql = "select si.spareSeriesId, si.spareStatus, s.catlogType, " +
+                "s.spareDesc, s.sparePrice from SpareItemBean si, SpareBean s " +
+                "where si.spareId = s.spareId and s.spareDesc like '%" + keyword + "%'";
+        return queryAll(hql);
+    }
 }

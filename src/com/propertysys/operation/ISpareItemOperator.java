@@ -10,4 +10,5 @@ import java.util.List;
 public interface ISpareItemOperator extends IBaseOperator<SpareItemBean> {
 
     List getAllSpareInfo();
+    List getAllSpareInfo(String keyword);
 }

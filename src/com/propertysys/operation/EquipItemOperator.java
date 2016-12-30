@@ -16,4 +16,11 @@ public class EquipItemOperator extends BaseOperator<EquipItemBean> implements IE
                 "where e.equipId = em.equipId";
         return queryAll(hql);
     }
+
+    public List getAllEquipInfo(String keyword){
+        String hql = "select e.equipSeriesId, e.equipStatus, em.catlogType, " +
+                "em.equipDesc, em.equipPrice from EquipItemBean e, EquipmentBean em " +
+                "where e.equipId = em.equipId and em.equipDesc like '%" + keyword + "%'";
+        return queryAll(hql);
+    }
 }

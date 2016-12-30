@@ -35,4 +35,16 @@ public class SpareItemOperatorTest {
     }
 
 
+    @Test
+    public void getAllSpareInfo1() throws Exception {
+        List spareInfo = spareItemOperator.getAllSpareInfo("part");
+        for(Iterator iter = spareInfo.iterator(); iter.hasNext();){
+            Object[] spare = (Object[]) iter.next();
+            System.out.println("equipSeriesId=" + (int) spare[0] +
+                    " EquipStatus=" + (Integer)spare[1] +
+                    " CatlogType=" + (String) spare[2] +
+                    " desc=" + (String) spare[3] +
+                    " price=" + (Double) spare[4]);
+        }
+    }
 }

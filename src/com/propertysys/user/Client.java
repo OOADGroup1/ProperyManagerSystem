@@ -49,6 +49,22 @@ public class Client {
     }
 
     /**
+     * view all the equipments in the company by keyword
+     * @param keyword
+     */
+    public void viewAllEquips(String keyword){
+        List equipInfo = equipItemOperator.getAllEquipInfo(keyword);
+        for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
+            Object[] equip = (Object[]) iter.next();
+            System.out.println("equipSeriesId=" + (int) equip[0] +
+                    " EquipStatus=" + getStatus((Integer)equip[1])  +
+                    " CatlogType=" + (String) equip[2] +
+                    " desc=" + (String) equip[3] +
+                    " price=" + (Double) equip[4]);
+        }
+    }
+
+    /**
      * view all the spares in the company
      */
     public void viewAllSpares(){
@@ -63,6 +79,21 @@ public class Client {
         }
     }
 
+    /**
+     * view all the spares in the company by keyword
+     * @param keyword
+     */
+    public void viewAllSpares(String keyword){
+        List spareInfo = spareItemOperator.getAllSpareInfo(keyword);
+        for(Iterator iter = spareInfo.iterator(); iter.hasNext();){
+            Object[] spare = (Object[]) iter.next();
+            System.out.println("spareSeriesId=" + (int) spare[0] +
+                    " SpareStatus=" + getStatus((Integer)spare[1])  +
+                    " CatlogType=" + (String) spare[2] +
+                    " desc=" + (String) spare[3] +
+                    " price=" + (Double) spare[4]);
+        }
+    }
     /**
      * view all the equipments that a employee has by this employee's Id
      * @param employeeId

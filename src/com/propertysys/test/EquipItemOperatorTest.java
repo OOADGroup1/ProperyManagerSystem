@@ -76,4 +76,17 @@ public class EquipItemOperatorTest {
         }
 
     }
+
+    @Test
+    public void getAllEquipInfo1() throws Exception {
+        List equipInfo = equipItemOperator.getAllEquipInfo("to");
+        for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
+            Object[] equip = (Object[]) iter.next();
+            System.out.println("equipSeriesId=" + (int) equip[0] +
+                    " EquipStatus=" + (Integer)equip[1] +
+                    " CatlogType=" + (String) equip[2] +
+                    " desc=" + (String) equip[3] +
+                    " price=" + (Double) equip[4]);
+        }
+    }
 }

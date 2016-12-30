@@ -52,4 +52,14 @@ public class ClientTest {
     public void viewEquipInstallRecoById() throws Exception {
 
     }
+
+    @Test
+    public void viewAllEquips1() throws Exception {
+
+    }
+
+    @Test
+    public void viewAllSpares1() throws Exception {
+
+    }
 }
