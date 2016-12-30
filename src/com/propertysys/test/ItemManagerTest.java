@@ -128,8 +128,8 @@ public class ItemManagerTest {
     @Test
     public void testDiscardEquipById(){
         itemManager.discardEquipById(3);
-//        EquipItemBean e = equipItemOperator.queryById(3);
-//        Assert.assertNotEquals(e.getEquipStatus(), new Integer(GARBAGE));
+        EquipItemBean e = equipItemOperator.queryById(3);
+        Assert.assertNotEquals(e.getEquipStatus(), new Integer(GARBAGE));
     }
 
 }
