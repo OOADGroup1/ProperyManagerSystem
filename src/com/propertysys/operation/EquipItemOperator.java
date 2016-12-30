@@ -1,5 +1,7 @@
 package com.propertysys.operation;
 
+import com.propertysys.bean.EquipItemBean;
+
 import java.util.List;
 
 

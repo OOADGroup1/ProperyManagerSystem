@@ -1,5 +1,6 @@
 package com.propertysys.user;
 
+import com.propertysys.bean.EquipItemBean;
 import com.propertysys.operation.EquipItemOperator;
 import com.propertysys.operation.SpareItemOperator;
 

@@ -1,5 +1,6 @@
 package com.propertysys.test;
 
+import com.propertysys.bean.EquipItemBean;
 import com.propertysys.operation.EquipItemOperator;
 import org.junit.Before;
 import org.junit.Test;

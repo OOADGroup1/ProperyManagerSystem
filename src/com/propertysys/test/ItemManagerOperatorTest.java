@@ -1,5 +1,6 @@
 package com.propertysys.test;
 
+import com.propertysys.bean.ItemManagerBean;
 import com.propertysys.operation.ItemManagerOperator;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

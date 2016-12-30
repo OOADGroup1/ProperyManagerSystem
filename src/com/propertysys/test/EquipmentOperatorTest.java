@@ -1,9 +1,6 @@
 package com.propertysys.test;
 
-<<<<<<< HEAD
-=======
 import com.propertysys.bean.EquipmentBean;
->>>>>>> baed44696f70c25b16921667c62ca89684991449
 import com.propertysys.operation.EquipmentOperator;
 import org.junit.Before;
 import org.junit.Test;
