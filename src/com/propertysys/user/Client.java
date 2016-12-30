@@ -1,6 +1,7 @@
 package com.propertysys.user;
 
 import com.propertysys.bean.EquipItemBean;
+import com.propertysys.bean.SpareItemBean;
 import com.propertysys.operation.EquipItemOperator;
 import com.propertysys.operation.SpareItemOperator;
 
@@ -29,19 +30,26 @@ public class Client {
         for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
             EquipItemBean equip = (EquipItemBean) iter.next();
             System.out.println("equipSeriesId = " + equip.getEquipSeriesId() +
-                    " EquipStatus = " + getEquipStatus(equip.getEquipStatus()) +
+                    " EquipStatus = " + getStatus(equip.getEquipStatus()) +
                     " CatlogType = " + equip.getCatlogType() +
                     " desc = " + equip.getEquipDesc() +
                     " price = " + equip.getEquipPrice());
         }
-
     }
 
     /**
      * view all the spares in the company
      */
     private void viewAllSpares(){
-        // TODO
+        List spareInfo = spareItemOperator.getAllSpareInfo();
+        for(Iterator iter = spareInfo.iterator(); iter.hasNext();){
+            SpareItemBean spare= (SpareItemBean) iter.next();
+            System.out.println("spareSeriesId=" + spare.getSpareSeriesId() +
+                    " spareStatus=" + getStatus(spare.getSpareStatus()) +
+                    " CatlogType=" + spare.getCatlogType() +
+                    " desc=" + spare.getSpareDesc() +
+                    " price=" + spare.getSparePrice());
+        }
     }
 
     /**
@@ -84,7 +92,7 @@ public class Client {
         // TODO
     }
 
-    private String getEquipStatus(int stauts){
+    private String getStatus(int stauts){
         if (stauts == IDLE){
             return "idle";
         } else if (stauts == OCCUPY){
