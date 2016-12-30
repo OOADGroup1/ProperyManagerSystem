@@ -22,6 +22,7 @@ public class Client {
     private SpareItemOperator spareItemOperator;
     private SpareRentRecordOperator spareRentRecordOperator;
     private SpareManageRecordOperator spareManageRecordOperator;
+    private InstallRecordOperator installRecordOperator;
 
     public Client(){
         equipItemOperator = new EquipItemOperator();
@@ -30,6 +31,7 @@ public class Client {
         spareItemOperator = new SpareItemOperator();
         spareRentRecordOperator = new SpareRentRecordOperator();
         spareManageRecordOperator = new SpareManageRecordOperator();
+        installRecordOperator = new InstallRecordOperator();
     }
     /**
      * view all the equipments in the company
@@ -124,7 +126,13 @@ public class Client {
      * @param equipId
      */
     public void viewEquipInstallRecoById(int equipId){
-        // TODO
+        List<InstallRecordBean> list = installRecordOperator.viewInstallRecByEquipId(equipId);
+        System.out.println("Equipment(EquipSeriesId:" + equipId + ")'s install history:");
+        for (InstallRecordBean installRec:
+                list) {
+            System.out.println(installRec.getInstallDate() +
+                    " installed Spare(SpareSeriesId: " + installRec.getSpareSeriesId() + ")");
+        }
     }
 
     /**
