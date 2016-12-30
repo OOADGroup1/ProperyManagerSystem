@@ -26,7 +26,6 @@ public class EquipItemOperatorTest {
         equipItemBean.setEquipSeriesId(3);
         equipItemBean.setEquipStatus(IDLE);
         equipItemBean.setEquipId(1);
-        equipItemBean.setCatlogId(1);
         equipItemOperator.insert(equipItemBean);
     }
 
@@ -36,7 +35,6 @@ public class EquipItemOperatorTest {
         equipItemBean.setEquipSeriesId(3);
         equipItemBean.setEquipStatus(IDLE);
         equipItemBean.setEquipId(1);
-        equipItemBean.setCatlogId(1);
         equipItemOperator.delete(equipItemBean);
     }
 
@@ -46,7 +44,6 @@ public class EquipItemOperatorTest {
         equipItemBean.setEquipSeriesId(2);
         equipItemBean.setEquipStatus(OCCUPY);
         equipItemBean.setEquipId(1);
-        equipItemBean.setCatlogId(1);
         equipItemOperator.update(equipItemBean);
     }
 

@@ -18,6 +18,7 @@ public class ItemManager {
 
     private final String BUY = "buy";
     private final String DISCARD = "discard";
+    private final int GARBAGE = 2;
     private ItemManagerBean itemManagerBean;
     private EquipItemOperator equipItemOperator;
     private EquipManageRecordOperator equipManageRecordOperator;
@@ -35,7 +36,7 @@ public class ItemManager {
      * buy equipment
      * @param equipItem
      */
-    private void buyEquipItem(EquipItemBean equipItem){
+    public void buyEquipItem(EquipItemBean equipItem){
         // add equipItem
         equipItemOperator.insert(equipItem);
         // add equipManageRecord
@@ -51,7 +52,7 @@ public class ItemManager {
      * buy a list of equipments
      * @param equipItemList
      */
-    private void buyEquipItems(List<EquipItemBean> equipItemList){
+    public void buyEquipItems(List<EquipItemBean> equipItemList){
         // add equipment list
         equipItemOperator.insertAll(equipItemList);
         // add record list
@@ -72,7 +73,7 @@ public class ItemManager {
      * but spare
      * @param spareItem
      */
-    private void buySpareItem(SpareItemBean spareItem){
+    public void buySpareItem(SpareItemBean spareItem){
         // add spareItem
         spareItemOperator.insert(spareItem);
         // add SpareManageRecord
@@ -88,7 +89,7 @@ public class ItemManager {
      * buy a list of spares
      * @param spareItemList
      */
-    private void buySpareItems(List<SpareItemBean> spareItemList){
+    public void buySpareItems(List<SpareItemBean> spareItemList){
         // add spare list
         spareItemOperator.insertAll(spareItemList);
         // add record list
@@ -109,9 +110,12 @@ public class ItemManager {
      * discard the equipment by equipId
      * @param equipId
      */
-    private void discardEquipById(int equipId){
-        // delete equip from equipItem table
-        equipItemOperator.delete(equipId);
+    public void discardEquipById(int equipId){
+        // update equip from equipItem table
+        EquipItemBean e = equipItemOperator.queryById(equipId);
+        e.setEquipStatus(GARBAGE);
+        equipItemOperator.update(e);
+
         // add discard record
         EquipManageRecordBean equipManageRecordBean = new EquipManageRecordBean();
         equipManageRecordBean.setEquipSeriesId(equipId);
@@ -125,8 +129,9 @@ public class ItemManager {
      * discard the equipment by equipItem
      * @param equipItem
      */
-    private void discardEquip(EquipItemBean equipItem){
-        // delete equip from equipItem table
+    public void discardEquip(EquipItemBean equipItem){
+        // update equip from equipItem table
+
         equipItemOperator.delete(equipItem);
         // add discard record
         EquipManageRecordBean equipManageRecordBean = new EquipManageRecordBean();
@@ -141,7 +146,7 @@ public class ItemManager {
      * discard the spare by spareId
      * @param spareId
      */
-    private void discardSpareById(int spareId){
+    public void discardSpareById(int spareId){
         // delete spare from spareItem table
         spareItemOperator.delete(spareId);
         // add discard record
@@ -157,7 +162,7 @@ public class ItemManager {
      * discard the spare by spareItem
      * @param spareItem
      */
-    private void dicardSpare(SpareItemBean spareItem){
+    public void dicardSpare(SpareItemBean spareItem){
         // delete spare from spareItem table
         spareItemOperator.delete(spareItem);
         // add discard record

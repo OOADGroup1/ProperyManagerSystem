@@ -5,8 +5,6 @@ import com.propertysys.operation.SpareOperator;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Sunny on 16/12/30.
  */
