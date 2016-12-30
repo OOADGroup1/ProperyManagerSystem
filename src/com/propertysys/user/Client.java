@@ -1,8 +1,12 @@
 package com.propertysys.user;
 
 import com.propertysys.bean.EquipItemBean;
+import com.propertysys.bean.SpareItemBean;
+import com.propertysys.bean.SpareRentRecordBean;
 import com.propertysys.operation.EquipItemOperator;
+import com.propertysys.operation.EquipRentRecordOperator;
 import com.propertysys.operation.SpareItemOperator;
+import com.propertysys.operation.SpareRentRecordOperator;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,11 +19,15 @@ public class Client {
     private final int IDLE = 1;
     private final int OCCUPY = 0;
     private EquipItemOperator equipItemOperator;
+    private EquipRentRecordOperator equipRentRecordOperator;
     private SpareItemOperator spareItemOperator;
+    private SpareRentRecordOperator spareRentRecordOperator;
 
     public Client(){
         equipItemOperator = new EquipItemOperator();
+        equipRentRecordOperator = new EquipRentRecordOperator();
         spareItemOperator = new SpareItemOperator();
+        spareRentRecordOperator = new SpareRentRecordOperator();
     }
     /**
      * view all the equipments in the company
@@ -27,21 +35,28 @@ public class Client {
     private void viewAllEquips(){
         List equipInfo = equipItemOperator.getAllEquipInfo();
         for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
-            EquipItemBean equip = (EquipItemBean) iter.next();
-            System.out.println("equipSeriesId = " + equip.getEquipSeriesId() +
-                    " EquipStatus = " + getEquipStatus(equip.getEquipStatus()) +
-                    " CatlogType = " + equip.getCatlogType() +
-                    " desc = " + equip.getEquipDesc() +
-                    " price = " + equip.getEquipPrice());
+            Object[] equip = (Object[]) iter.next();
+            System.out.println("equipSeriesId=" + (int) equip[0] +
+                    " EquipStatus=" + getStatus((Integer)equip[1])  +
+                    " CatlogType=" + (String) equip[2] +
+                    " desc=" + (String) equip[3] +
+                    " price=" + (Double) equip[4]);
         }
-
     }
 
     /**
      * view all the spares in the company
      */
     private void viewAllSpares(){
-        // TODO
+        List spareInfo = spareItemOperator.getAllSpareInfo();
+        for(Iterator iter = spareInfo.iterator(); iter.hasNext();){
+            Object[] spare = (Object[]) iter.next();
+            System.out.println("spareSeriesId=" + (int) spare[0] +
+                    " SpareStatus=" + getStatus((Integer)spare[1])  +
+                    " CatlogType=" + (String) spare[2] +
+                    " desc=" + (String) spare[3] +
+                    " price=" + (Double) spare[4]);
+        }
     }
 
     /**
@@ -49,7 +64,9 @@ public class Client {
      * @param employeeId
      */
     private void viewAllRentEquipsByEmployeeId(int employeeId){
-        // TODO
+//        String hql = "select e.equipSeriesId from EquipRentRecordBean e " +
+//                "wherer e.employeeId = ?";
+//        equipRentRecordOperator.queryAll();
     }
 
     /**
@@ -84,7 +101,7 @@ public class Client {
         // TODO
     }
 
-    private String getEquipStatus(int stauts){
+    private String getStatus(int stauts){
         if (stauts == IDLE){
             return "idle";
         } else if (stauts == OCCUPY){

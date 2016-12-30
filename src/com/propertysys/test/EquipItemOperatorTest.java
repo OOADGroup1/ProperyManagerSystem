@@ -67,12 +67,12 @@ public class EquipItemOperatorTest {
     public void getAllEquipInfo() throws Exception {
         List equipInfo = equipItemOperator.getAllEquipInfo();
         for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
-            EquipItemBean equip = (EquipItemBean) iter.next();
-            System.out.println("equipSeriesId=" + equip.getEquipSeriesId() +
-                    " EquipStatus=" + equip.getEquipStatus() +
-                    " CatlogType=" + equip.getCatlogType() +
-                    " desc=" + equip.getEquipDesc() +
-                    " price=" + equip.getEquipPrice());
+            Object[] equip = (Object[]) iter.next();
+            System.out.println("equipSeriesId=" + (int) equip[0] +
+                    " EquipStatus=" + (Integer)equip[1] +
+                    " CatlogType=" + (String) equip[2] +
+                    " desc=" + (String) equip[3] +
+                    " price=" + (Double) equip[4]);
         }
 
     }

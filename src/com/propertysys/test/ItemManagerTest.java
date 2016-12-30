@@ -21,6 +21,7 @@ import java.util.List;
 public class ItemManagerTest {
     private final int IDLE = 1;
     private final int OCCUPY = 0;
+    private final int GARBAGE = 2;
     private ItemManager itemManager;
     private EquipItemOperator equipItemOperator;
     private EquipManageRecordOperator equipManageRecordOperator;
