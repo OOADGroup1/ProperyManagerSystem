@@ -11,45 +11,6 @@ public class SpareItemBean {
     private int spareSeriesId;
     private int spareId;
     private Integer spareStatus;
-    private String catlogType;
-    private String spareDesc;
-    private Double sparePrice;
-
-    public SpareItemBean(){}
-
-    public SpareItemBean(int spareSeriesId, Integer spareStatus,
-                         String catlogType, String spareDesc, Double sparePrice){
-        this.spareSeriesId = spareSeriesId;
-        this.spareStatus = spareStatus;
-        this.catlogType = catlogType;
-        this.spareDesc = spareDesc;
-        this.sparePrice = sparePrice;
-    }
-
-    public void setCatlogType(String catlogType){
-        this.catlogType = catlogType;
-    }
-
-    public String getCatlogType(){
-        return catlogType;
-    }
-
-    public void setSpareDesc(String spareDesc){
-        this.spareDesc = spareDesc;
-    }
-
-    public String getSpareDesc(){
-        return spareDesc;
-    }
-
-    public void setSparePrice(Double sparePrice){
-        this.sparePrice = sparePrice;
-    }
-
-    public Double getSparePrice(){
-        return sparePrice;
-    }
-
 
     @Id
     @Column(name = "spare_series_id", nullable = false)

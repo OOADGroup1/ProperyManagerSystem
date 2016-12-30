@@ -12,47 +12,6 @@ public class EquipItemBean {
     private int equipId;
     private Integer equipStatus;
 
-    private String catlogType;
-    private String equipDesc;
-    private Double equipPrice;
-
-    public EquipItemBean(){
-
-    }
-
-    public EquipItemBean(int equipSeriesId, Integer equipStatus,
-                         String catlogType, String equipDesc, Double equipPrice){
-        this.equipSeriesId = equipSeriesId;
-        this.equipStatus = equipStatus;
-        this.catlogType = catlogType;
-        this.equipDesc = equipDesc;
-        this.equipPrice = equipPrice;
-    }
-
-    public void setCatlogType(String catlogType){
-        this.catlogType = catlogType;
-    }
-
-    public String getCatlogType(){
-        return catlogType;
-    }
-
-    public void setEquipDesc(String equipDesc){
-        this.equipDesc = equipDesc;
-    }
-
-    public String getEquipDesc(){
-        return equipDesc;
-    }
-
-    public void setEquipPrice(Double equipPrice){
-        this.equipPrice = equipPrice;
-    }
-
-    public Double getEquipPrice(){
-        return equipPrice;
-    }
-
     @Id
     @Column(name = "equip_series_id", nullable = false)
     public int getEquipSeriesId() {

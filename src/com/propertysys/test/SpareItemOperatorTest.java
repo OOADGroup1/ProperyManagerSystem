@@ -25,12 +25,12 @@ public class SpareItemOperatorTest {
     public void getAllSpareInfo() throws Exception {
         List spareInfo = spareItemOperator.getAllSpareInfo();
         for(Iterator iter = spareInfo.iterator(); iter.hasNext();){
-            SpareItemBean spare= (SpareItemBean) iter.next();
-            System.out.println("spareSeriesId=" + spare.getSpareSeriesId() +
-                    " spareStatus=" + spare.getSpareStatus() +
-                    " CatlogType=" + spare.getCatlogType() +
-                    " desc=" + spare.getSpareDesc() +
-                    " price=" + spare.getSparePrice());
+            Object[] spare = (Object[]) iter.next();
+            System.out.println("equipSeriesId=" + (int) spare[0] +
+                    " EquipStatus=" + (Integer)spare[1] +
+                    " CatlogType=" + (String) spare[2] +
+                    " desc=" + (String) spare[3] +
+                    " price=" + (Double) spare[4]);
         }
     }
 
