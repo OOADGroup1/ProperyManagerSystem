@@ -19,3 +19,6 @@
 
 ## hibernate config file
 src/hibernate.cfg.xml
+.idea/libraries/mysql_connector_java_5_1_38_bin.xml
+
+
