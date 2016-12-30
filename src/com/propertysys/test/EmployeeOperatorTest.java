@@ -85,4 +85,15 @@ public class EmployeeOperatorTest {
         }
     }
 
+    @Test
+    public void queryAll1(){
+        String hql = "from EmployeeBean e where e.employeeName = ?";
+        List<EmployeeBean> list = employeeOperator.queryAll(hql, new Object[]{"alex"});
+        for(Iterator iter = list.iterator(); iter.hasNext();) {
+            EmployeeBean employeeBean = (EmployeeBean) iter.next();
+            System.out.println("id=" + employeeBean.getEmployeeId() +
+                    " name=" + employeeBean.getEmployeeName());
+        }
+    }
+
 }
