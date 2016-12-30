@@ -1,16 +1,11 @@
 package com.propertysys.test;
 
-import com.propertysys.bean.EmployeeBean;
-import com.propertysys.bean.EquipmentBean;
-import com.propertysys.bean.EquipmentBeanPK;
 import com.propertysys.operation.EquipmentOperator;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Iterator;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by shenying on 16/12/30.

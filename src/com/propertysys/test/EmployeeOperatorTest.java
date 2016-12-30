@@ -1,6 +1,5 @@
 package com.propertysys.test;
 
-import com.propertysys.bean.EmployeeBean;
 import com.propertysys.operation.EmployeeOperator;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,8 +9,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by shenying on 16/12/29.

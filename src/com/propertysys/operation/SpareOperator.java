@@ -1,7 +1,5 @@
 package com.propertysys.operation;
 
-import com.propertysys.bean.SpareBean;
-
 /**
  * Created by Sunny on 16/12/28.
  */

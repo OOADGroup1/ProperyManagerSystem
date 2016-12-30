@@ -1,6 +1,5 @@
 package com.propertysys.test;
 
-import com.propertysys.bean.EmployeeBean;
 import com.propertysys.hibernate.HibernateUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

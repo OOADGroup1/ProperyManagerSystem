@@ -1,6 +1,5 @@
 package com.propertysys.test;
 
-import com.propertysys.bean.EquipItemBean;
 import com.propertysys.operation.EquipItemOperator;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,5 +63,19 @@ public class EquipItemOperatorTest {
             System.out.println("id: " + equipItemBean.getEquipSeriesId() +
                     " status: " + equipItemBean.getEquipStatus());
         }
+    }
+
+    @Test
+    public void getAllEquipInfo() throws Exception {
+        List equipInfo = equipItemOperator.getAllEquipInfo();
+        for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
+            Object equip = iter.next();
+            System.out.print(equip.toString());
+//            System.out.println("equipId=" + equip. +
+//                    " CatlogType=" + equipInfo.get(1) +
+//                    " desc=" + equipInfo.get(2) +
+//                    " price=" + equipInfo.get(3));
+        }
+
     }
 }

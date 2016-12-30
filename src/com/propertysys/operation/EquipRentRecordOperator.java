@@ -1,7 +1,5 @@
 package com.propertysys.operation;
 
-import com.propertysys.bean.EquipRentRecordBean;
-
 /**
  * Created by Sunny on 16/12/28.
  */

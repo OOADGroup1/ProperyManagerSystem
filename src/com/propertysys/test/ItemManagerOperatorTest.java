@@ -1,14 +1,10 @@
 package com.propertysys.test;
 
-import com.propertysys.bean.ItemManagerBean;
 import com.propertysys.operation.ItemManagerOperator;
-import com.propertysys.user.ItemManager;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by shenying on 16/12/30.

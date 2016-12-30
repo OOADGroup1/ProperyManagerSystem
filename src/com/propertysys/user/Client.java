@@ -1,17 +1,35 @@
 package com.propertysys.user;
 
-import com.sun.xml.internal.bind.v2.TODO;
+import com.propertysys.operation.EquipItemOperator;
+import com.propertysys.operation.SpareItemOperator;
+
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Sunny on 16/12/28.
  */
 public class Client {
 
+    private EquipItemOperator equipItemOperator;
+    private SpareItemOperator spareItemOperator;
+
+    public Client(){
+        equipItemOperator = new EquipItemOperator();
+        spareItemOperator = new SpareItemOperator();
+    }
     /**
-     * view all theequipments in the company
+     * view all the equipments in the company
      */
     private void viewAllEquips(){
-        // TODO
+        String hql = "";
+        List<EquipItemBean> list = equipItemOperator.queryAll();
+        for(Iterator iter = list.iterator(); iter.hasNext();) {
+            EquipItemBean equipItemBean = (EquipItemBean) iter.next();
+            System.out.println("id: " + equipItemBean.getEquipSeriesId() +
+                    " status: " + equipItemBean.getEquipStatus());
+        }
+
     }
 
     /**

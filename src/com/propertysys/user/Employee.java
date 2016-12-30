@@ -32,13 +32,13 @@ public class Employee {
 
     /**
      * install the spare on equipment
-     * @param equipId Id of the equipment
-     * @param spareId Id of the spare
+     * @param equipSeries Series num of the equipment
+     * @param spareSeries Series num of the spare
      */
-    public void install(int equipId, int spareId){
+    public void install(int equipSeries, int spareSeries){
         InstallRecordBean installRecordBean = new InstallRecordBean();
-        installRecordBean.setEquipSeriesId(equipId);
-        installRecordBean.setSpareSeriesId(spareId);
+        installRecordBean.setEquipSeriesId(equipSeries);
+        installRecordBean.setSpareSeriesId(spareSeries);
         installRecordBean.setInstallDate(new Timestamp(System.currentTimeMillis()));
         installRecordOperator.insert(installRecordBean);
     }
