@@ -153,7 +153,7 @@ public class ItemManager {
         spareManageRecordOperator.insert(spareManageRecordBean);
     }
 
-    /**
+    /**git
      * discard the spare by spareItem
      * @param spareItem
      */
