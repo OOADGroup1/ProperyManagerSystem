@@ -14,6 +14,7 @@ public class Client {
 
     private final int IDLE = 0;
     private final int OCCUPY = 1;
+    private final int DISCARD = 2;
     private final String BORROW = "borrow";
     private final String RETURN = "return";
     private EquipItemOperator equipItemOperator;
@@ -36,7 +37,7 @@ public class Client {
     /**
      * view all the equipments in the company
      */
-    public void viewAllEquips(){
+    public List viewAllEquips(){
         List equipInfo = equipItemOperator.getAllEquipInfo();
         for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
             Object[] equip = (Object[]) iter.next();
@@ -46,13 +47,14 @@ public class Client {
                     " desc=" + (String) equip[3] +
                     " price=" + (Double) equip[4]);
         }
+        return equipInfo;
     }
 
     /**
      * view all the equipments in the company by keyword
      * @param keyword
      */
-    public void viewAllEquips(String keyword){
+    public List viewAllEquips(String keyword){
         List equipInfo = equipItemOperator.getAllEquipInfo(keyword);
         for(Iterator iter = equipInfo.iterator(); iter.hasNext();){
             Object[] equip = (Object[]) iter.next();
@@ -62,12 +64,13 @@ public class Client {
                     " desc=" + (String) equip[3] +
                     " price=" + (Double) equip[4]);
         }
+        return equipInfo;
     }
 
     /**
      * view all the spares in the company
      */
-    public void viewAllSpares(){
+    public List viewAllSpares(){
         List spareInfo = spareItemOperator.getAllSpareInfo();
         for(Iterator iter = spareInfo.iterator(); iter.hasNext();){
             Object[] spare = (Object[]) iter.next();
@@ -77,13 +80,14 @@ public class Client {
                     " desc=" + (String) spare[3] +
                     " price=" + (Double) spare[4]);
         }
+        return spareInfo;
     }
 
     /**
      * view all the spares in the company by keyword
      * @param keyword
      */
-    public void viewAllSpares(String keyword){
+    public List viewAllSpares(String keyword){
         List spareInfo = spareItemOperator.getAllSpareInfo(keyword);
         for(Iterator iter = spareInfo.iterator(); iter.hasNext();){
             Object[] spare = (Object[]) iter.next();
@@ -93,6 +97,7 @@ public class Client {
                     " desc=" + (String) spare[3] +
                     " price=" + (Double) spare[4]);
         }
+        return spareInfo;
     }
     /**
      * view all the equipments that a employee has by this employee's Id
@@ -126,37 +131,39 @@ public class Client {
      * view the equipment's life cycle(buy, borrow, return, discard) by EquipId
      * @param equipId
      */
-    public void viewEquipLifeCycleById(int equipId){
+    public int viewEquipLifeCycleById(int equipId){
         String manageHql = "from EquipManageRecordBean m where m.equipSeriesId = ? " +
                 "order by m.manageDate ASC";
-        List<EquipManageRecordBean> manageIist = equipManageRecordOperator.queryAll(manageHql, equipId);
+        List<EquipManageRecordBean> manageList = equipManageRecordOperator.queryAll(manageHql, equipId);
         String rentHql = "from EquipRentRecordBean r where r.equipSeriesId = ? " +
                 "order by r.rentDate ASC";
         List<EquipRentRecordBean> rentList = equipRentRecordOperator.queryAll(rentHql, equipId);
         System.out.println("The life cycle of equipment(equipSeriesId: "+ equipId +") is:");
-        viewEquipLifeCycle(manageIist, rentList);
+        viewEquipLifeCycle(manageList, rentList);
+        return (manageList.size()+rentList.size());
     }
 
     /**
      * view the equipment's life cycle(buy, borrow, return, discard) by EquipId
      * @param spareId
      */
-    public void viewSpareLifeCycleById(int spareId){
+    public int viewSpareLifeCycleById(int spareId){
         String manageHql = "from SpareManageRecordBean m where m.spareSeriesId = ? " +
                 "order by m.manageDate ASC";
-        List<SpareManageRecordBean> manageIist = spareManageRecordOperator.queryAll(manageHql, spareId);
+        List<SpareManageRecordBean> manageList = spareManageRecordOperator.queryAll(manageHql, spareId);
         String rentHql = "from SpareRentRecordBean r where r.spareSeriesId = ? " +
-                "order by r.rentDate ASC";
+                "order by r.rentTime ASC";
         List<SpareRentRecordBean> rentList = spareRentRecordOperator.queryAll(rentHql, spareId);
         System.out.println("The life cycle of spare(spareSeriesId: "+ spareId +") is:");
-        viewSpareLifeCycle(manageIist, rentList);
+        viewSpareLifeCycle(manageList, rentList);
+        return (manageList.size()+rentList.size());
     }
 
     /**
      * view the equipments's installation record of the spares By EquipId
      * @param equipId
      */
-    public void viewEquipInstallRecoById(int equipId){
+    public List viewEquipInstallRecoById(int equipId){
         List<InstallRecordBean> list = installRecordOperator.viewInstallRecByEquipId(equipId);
         System.out.println("Equipment(EquipSeriesId:" + equipId + ")'s install history:");
         for (InstallRecordBean installRec:
@@ -164,6 +171,7 @@ public class Client {
             System.out.println(installRec.getInstallDate() +
                     " installed Spare(SpareSeriesId: " + installRec.getSpareSeriesId() + ")");
         }
+        return list;
     }
 
     /**
@@ -173,10 +181,11 @@ public class Client {
      */
     private String getStatus(int status){
         if (status == IDLE){
-            return "idle";
+            return "Idle";
         } else if (status == OCCUPY){
             return "Occupied";
-        }
+        } else if(status == DISCARD)
+            return "Discard";
         return null;
     }
 

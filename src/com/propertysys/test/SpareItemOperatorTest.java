@@ -2,6 +2,7 @@ package com.propertysys.test;
 
 import com.propertysys.bean.SpareItemBean;
 import com.propertysys.operation.SpareItemOperator;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,12 +33,13 @@ public class SpareItemOperatorTest {
                     " desc=" + (String) spare[3] +
                     " price=" + (Double) spare[4]);
         }
+        Assert.assertEquals(15, spareInfo.size());
     }
 
 
     @Test
     public void getAllSpareInfo1() throws Exception {
-        List spareInfo = spareItemOperator.getAllSpareInfo("part");
+        List spareInfo = spareItemOperator.getAllSpareInfo("card");
         for(Iterator iter = spareInfo.iterator(); iter.hasNext();){
             Object[] spare = (Object[]) iter.next();
             System.out.println("equipSeriesId=" + (int) spare[0] +
@@ -46,5 +48,6 @@ public class SpareItemOperatorTest {
                     " desc=" + (String) spare[3] +
                     " price=" + (Double) spare[4]);
         }
+        Assert.assertEquals(5, spareInfo.size());
     }
 }

@@ -2,6 +2,7 @@ package com.propertysys.test;
 
 import com.propertysys.bean.InstallRecordBean;
 import com.propertysys.operation.InstallRecordOperator;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.omg.CORBA.Object;
@@ -24,11 +25,13 @@ public class InstallRecordOperatorTest {
 
     @Test
     public void viewInstallRecByEquipId() throws Exception {
-        List<InstallRecordBean> list = installRecordOperator.viewInstallRecByEquipId(20160102);
+        List<InstallRecordBean> list = installRecordOperator.viewInstallRecByEquipId(2);
         for (InstallRecordBean installRec:
                 list) {
             System.out.println(installRec.getInstallDate() +
                     " installed Spare(SpareSeriesId: " + installRec.getSpareSeriesId() + ")");
         }
+        Assert.assertEquals(1, list.size());
     }
+
 }
